@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 220 15% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 10%;
+
+    --primary: 152 69% 36%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 152 60% 92%;
+    --primary-glow: 152 69% 46%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 15% 10%;
+
+    --muted: 220 14% 94%;
+    --muted-foreground: 220 10% 50%;
+
+    --accent: 152 60% 94%;
+    --accent-foreground: 152 69% 25%;
+
+    --destructive: 0 84% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 69% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --gain: 152 69% 36%;
+    --loss: 0 84% 55%;
+
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 152 69% 36%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 15% 10%;
+    --sidebar-primary: 152 69% 36%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 152 60% 94%;
+    --sidebar-accent-foreground: 152 69% 25%;
+    --sidebar-border: 220 13% 90%;
+    --sidebar-ring: 152 69% 36%;
+
+    --chart-1: 152 69% 36%;
+    --chart-2: 220 69% 50%;
+    --chart-3: 38 92% 50%;
+    --chart-4: 280 65% 55%;
+    --chart-5: 0 84% 55%;
+
+    --shadow-sm: 0 1px 3px hsl(220 15% 10% / 0.06);
+    --shadow-md: 0 4px 12px hsl(220 15% 10% / 0.08);
+    --shadow-lg: 0 8px 24px hsl(220 15% 10% / 0.12);
+  }
+
+  .dark {
+    --background: 220 20% 8%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 18% 11%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 220 18% 11%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 152 69% 42%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 152 40% 18%;
+    --primary-glow: 152 69% 52%;
+
+    --secondary: 220 18% 16%;
+    --secondary-foreground: 210 20% 95%;
+
+    --muted: 220 18% 16%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 152 40% 16%;
+    --accent-foreground: 152 69% 60%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --gain: 152 69% 42%;
+    --loss: 0 72% 55%;
+
+    --border: 220 18% 20%;
+    --input: 220 18% 20%;
+    --ring: 152 69% 42%;
+
+    --sidebar-background: 220 20% 10%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 152 69% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 152 40% 16%;
+    --sidebar-accent-foreground: 152 69% 60%;
+    --sidebar-border: 220 18% 20%;
+    --sidebar-ring: 152 69% 42%;
+
+    --shadow-sm: 0 1px 3px hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 4px 12px hsl(0 0% 0% / 0.4);
+    --shadow-lg: 0 8px 24px hsl(0 0% 0% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .font-inter {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .gain-text {
+    color: hsl(var(--gain));
+  }
+
+  .loss-text {
+    color: hsl(var(--loss));
+  }
+
+  .gain-bg {
+    background-color: hsl(var(--gain) / 0.1);
+  }
+
+  .loss-bg {
+    background-color: hsl(var(--loss) / 0.1);
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 cursor-pointer;
+  }
+
+  .glass {
+    backdrop-filter: blur(12px);
+    background: hsl(var(--card) / 0.8);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chart-gradient-gain {
+    background: linear-gradient(180deg, hsl(var(--gain) / 0.2) 0%, hsl(var(--gain) / 0) 100%);
+  }
+
+  .chart-gradient-loss {
+    background: linear-gradient(180deg, hsl(var(--loss) / 0.2) 0%, hsl(var(--loss) / 0) 100%);
+  }
+
+  .price-flash-gain {
+    animation: flashGain 0.4s ease-out;
+  }
+
+  .price-flash-loss {
+    animation: flashLoss 0.4s ease-out;
+  }
+}
+
+@keyframes flashGain {
+  0% { background-color: hsl(var(--gain) / 0.3); }
+  100% { background-color: transparent; }
+}
+
+@keyframes flashLoss {
+  0% { background-color: hsl(var(--loss) / 0.3); }
+  100% { background-color: transparent; }
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-scroll {
+  animation: ticker-scroll 30s linear infinite;
+}
+
+.ticker-scroll:hover {
+  animation-play-state: paused;
+}
